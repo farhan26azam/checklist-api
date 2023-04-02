@@ -1,0 +1,183 @@
+@font-face{
+    font-family: Balsamic;
+    src: url(D:\JavaScript\Checklist-api\checklist-api\src\components\BalsamiqSans-Bold.ttf);
+}
+@font-face{
+    font-family: Balsamic-Regular;
+    src: url(D:\JavaScript\Checklist-api\checklist-api\src\components\BalsamiqSans-Regular.ttf);
+}
+
+
+*{
+    font-family: Balsamic-Regular;
+    /* font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+}
+
+.list-title{
+    color: black;
+}
+.App{
+    display: flex;
+    flex-direction: row;
+    
+}
+.card{
+    margin-bottom: 5px;
+    border: #181818;
+    border-width: 2px;
+    border-style: groove;
+    color: black;
+}
+.title, .title-min{
+    font-family: Balsamic;
+    z-index: 1;
+    width: fill;
+    text-align: center;
+    background-color: #540d6e;
+    color: white;
+    height: 65px;
+    font-size: 50px;
+    padding: 2px;
+}
+.title-min{
+    font-size: 30px;
+    height: 40px;
+    color: white;
+}
+.tasks{
+    width: 60%;
+}
+.list-task, .list-task-sel{
+    text-decoration: none;
+    background-color: #540d6e;
+    color: black;
+    margin: 2%;
+    margin-top: 0;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 10px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+.list-task-sel{
+    height: fit-content;
+    margin-bottom: 0px;
+}
+
+.checkBoxes{
+    float: left;
+    margin-left: 5px;
+    margin-top: 5px;
+    width: 1.3em;
+    height: 1.3em;
+    background-color: grey;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+}
+.checkBoxes:checked{
+    background-color: #25d366;
+}
+.delete-button{
+    background-color: #ee4266;
+    border: transparent;
+    float: right;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    color: white;
+}
+.task-type{
+    height: 90%;
+    width: 60%;
+    border-radius: 30px;
+    font-size: 15px;
+    padding-left: 3%;
+    
+}
+.add-button{
+    background-color: #25d366;
+    color: white;
+    margin-left: 5px;
+    margin-top: 5%;
+    width: 2em;
+    height: 2em;
+    font-size: 20px;
+    border: transparent;
+    border-radius: 20px;
+}
+.delete-button-lower{
+    background-color: #ee4266;
+    width:2em;
+    margin-left: 5px;
+    height: 2em;
+    color: #ece5dd;
+    font-size: 20px;
+    border: transparent;
+    border-radius: 20px;
+}
+.sTitle{
+    font-family: Balsamic;
+    padding-top: 20px;
+    color: white;
+}
+.sList{
+    width: 40%;
+    float: right;
+    background-color: #540d6e;
+    /* color: #ece5dd; */
+    margin: 1%;
+    padding-top: 0.2%;
+    list-style-type: none;
+    border-radius: 10px;
+}
+.bottom-bar{
+    width: fill;
+    height: 70px;
+    background-color: #540d6e;
+    padding: 5px;
+    position: fixed;
+    display: flex;
+    bottom: 0;
+    z-index: 1;
+}
+@media screen and (max-width: 500px) {
+    .list-task{
+        height: fit-content;
+        margin-bottom: 10px;
+    }
+    .App{
+        display: block;
+    }
+    .tasks{
+        width: fill;
+    }
+    .sList{
+        width: 95%;
+        margin-top: 0;
+    }
+    .title{
+        font-size: 40px;
+        padding: 5%;
+        height: fit-content;
+    }
+}
+
+
+
+.container {
+    background-color: #4479ff;
+    height: 300px;
+    width: 1000px;
+    text-align: center;
+    padding: 10px;
+    font-family: Benne;
+    font-size: 50px;
+  }
+
