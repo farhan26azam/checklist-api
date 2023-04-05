@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const baseURL = "https://a9b7-39-55-212-215.in.ngrok.io//tasklist/tasks/";
+// const baseURL = "http:/192.168.244.204:8000//tasklist/tasks/";
+const baseURL = "https://drftest.herokuapp.com/tasklist/tasks/";
 
 const initialState = {
     value: "",
@@ -36,15 +37,18 @@ const listSlice = createSlice({
             state.value = action.payload;
         },
         deleteSelection(state, action){
-            state.myData = state.myData.filter((elem)=>
-            !elem.is_checked);
 
-            state.myData = state?.myData?.map((prev)=> {
-                return {
-                    ...prev, 
-                    is_checked:false
-                }
-            })
+            // console.log("data: " ,state.myData);
+
+            // state.myData = state.myData.filter((elem)=>
+            // !elem.is_checked);
+
+            // state.myData = state?.myData?.map((prev)=> {
+            //     return {
+            //         ...prev, 
+            //         is_checked:false
+            //     }
+            // })
 
             
         },
@@ -71,11 +75,11 @@ const listSlice = createSlice({
             // })
 
 
-            state.myData.push({
-                task_name: state?.value,
-                // id: state?.myData?.length,
-                is_checked: false,
-            })
+            // state.myData.push({
+            //     task_name: state?.value,
+            //     // id: state?.myData?.length,
+            //     is_checked: false,
+            // })
             // state.myData = [...state.myData, action.payload];
         },
     }

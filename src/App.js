@@ -10,9 +10,9 @@ function App() {
   return (
     <>
     <Routes>
-      <Route path='/' element={<List />}/> 
-       {/* <Route path="/" element={<Signup/>}  /> */}
-       {/* <Route path="/Login" element={<Login/>}/> */}
+      <Route path='/List' element={<List />}/> 
+       <Route path="/" element={<Signup/>}  />
+       <Route path="/Login" element={<Login/>}/>
      </Routes>
 
 

@@ -5,15 +5,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { valueSetter, deleteSelection,dataSetter, deleteTask, addTask } from "./store/slices/ListSlice";
 import store from "./store/store";
 import Popup from "reactjs-popup";
+import { useNavigate } from "react-router-dom";
 
-const baseURL = "https://a9b7-39-55-212-215.in.ngrok.io//tasklist/tasks/";
+const baseURL = "https://drftest.herokuapp.com/tasklist/tasks/";
 
 const List = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => 
   {
-    var request = new Request(baseURL);
-
     // fetch(request, {mode: 'no-cors'}).then(function(response){
     //   return response;
     // }).then(function(j){
@@ -22,11 +22,14 @@ const List = () => {
     //   console.log('Request failed', error);
     // })
 
-    // axios?.get
-    // (
-    //   baseURL,{withCredentials: true}
-    // )?.then((response) => setData(response.data)).catch(err => console.log(err));
+    
+
   }, []);
+
+  axios?.get
+    (
+      baseURL
+    )?.then((response) => setData(response.data)).catch(err => console.log(err));
 
   const allData = useSelector((state)=>{
     return state;
@@ -36,7 +39,7 @@ const List = () => {
   const selectDelete = ()=>{
     dispatch(deleteSelection());
   }
-  console.log("Data : ",allData?.listing?.myData );
+  //console.log("Data : ",allData?.listing?.myData );
   const taskDelete =(payload)=>{
     dispatch(deleteTask(payload));
   }
@@ -55,29 +58,32 @@ const List = () => {
   }
   function manipulator(e, index) {
     //console.log({ val: e.target.checked });
-    const tempData = allData.listing.myData?.map((elem, pos) => {
-      if(e.target.checked){
-        if (pos === index) {
-          // console.log("Selected element: ", elem?.name , elem?.isChecked);
-          return {
-            ...elem,
-            is_checked: true,
-          };
-          
-        } else return elem;
-      }else{
-        if (pos === index) {
-          //console.log("Selected element: ", elem?.name , elem?.isChecked);
-          return {
-            ...elem,
-            is_checked: false,
-          };
-          
-        } else return elem;
-      }
-    })
+    const URL = baseURL+index+"/";
+    axios.put(URL, {is_checked: e.target.checked})
 
-    setData(tempData);
+    // const tempData = allData.listing.myData?.map((elem, pos) => {
+    //   if(e.target.checked){
+    //     if (pos === index) {
+    //       // console.log("Selected element: ", elem?.name , elem?.isChecked);
+    //       return {
+    //         ...elem,
+    //         is_checked: true,
+    //       };
+          
+    //     } else return elem;
+    //   }else{
+    //     if (pos === index) {
+    //       //console.log("Selected element: ", elem?.name , elem?.isChecked);
+    //       return {
+    //         ...elem,
+    //         is_checked: false,
+    //       };
+          
+    //     } else return elem;
+    //   }
+    // })
+
+    // setData(tempData);
 
     // console.log("Data : ", allData.listing.myData);
     // setList((prev) =>
@@ -95,6 +101,12 @@ const List = () => {
   const muafasf = (e) => {
     setValue(e.target.value);
   };
+
+
+  const handleLogout=()=>{
+    axios.post("https://drftest.herokuapp.com/user/logout/");
+    navigate("/Login");
+  }
   //------------------------------------------
   // const [value, setValue] = useState("");
   // const [list, setList] = useState([
@@ -179,7 +191,7 @@ const List = () => {
                   <input
                     checked={post.is_checked}
                     className="checkBoxes"
-                    onChange={(e) => manipulator(e, index)
+                    onChange={(e) => manipulator(e, post.id)
                     }
                     type="checkBox"
                   >
@@ -249,9 +261,10 @@ const List = () => {
               <button className="add-button" onClick={taskAdd}>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="add-new"><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm4-9H13V8a1,1,0,0,0-2,0v3H8a1,1,0,0,0,0,2h3v3a1,1,0,0,0,2,0V13h3a1,1,0,0,0,0-2Z"></path></svg>
               </button>
-              <button className="delete-button-lower" onClick={selectDelete}>
+              {/* <button className="delete-button-lower" onClick={selectDelete}>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="close"><path d="M256 33C132.3 33 32 133.3 32 257s100.3 224 224 224 224-100.3 224-224S379.7 33 256 33zm108.3 299.5c1.5 1.5 2.3 3.5 2.3 5.6 0 2.1-.8 4.2-2.3 5.6l-21.6 21.7c-1.6 1.6-3.6 2.3-5.6 2.3-2 0-4.1-.8-5.6-2.3L256 289.8l-75.4 75.7c-1.5 1.6-3.6 2.3-5.6 2.3-2 0-4.1-.8-5.6-2.3l-21.6-21.7c-1.5-1.5-2.3-3.5-2.3-5.6 0-2.1.8-4.2 2.3-5.6l75.7-76-75.9-75c-3.1-3.1-3.1-8.2 0-11.3l21.6-21.7c1.5-1.5 3.5-2.3 5.6-2.3 2.1 0 4.1.8 5.6 2.3l75.7 74.7 75.7-74.7c1.5-1.5 3.5-2.3 5.6-2.3 2.1 0 4.1.8 5.6 2.3l21.6 21.7c3.1 3.1 3.1 8.2 0 11.3l-75.9 75 75.6 75.9z"></path></svg>
-              </button>
+              </button> */}
+              <button className="delete-button-lower" onClick={handleLogout}>LO</button>
             </div>
         </div>
         </div>

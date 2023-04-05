@@ -21,6 +21,9 @@
     width: 90%;
     border-radius: 30px;
 }
+.form{
+    background-color: transparent;
+}
 .not-button{
     background-color:#075e53;
     border: transparent;

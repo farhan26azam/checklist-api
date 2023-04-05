@@ -4,7 +4,7 @@ import "./Signup.css"
 import axios from 'axios';
 import { Link} from "react-router-dom";
 
-const baseURL = "https://d075-39-55-212-215.in.ngrok.io/user/signup/";
+const baseURL = "https://drftest.herokuapp.com/user/signup/";
 
 const Signup = () => {
   const [signUpData, setSignUpData] = useState({
